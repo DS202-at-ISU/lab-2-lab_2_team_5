@@ -81,9 +81,9 @@ Built, Acres, etc. Some of the categorical variables are Fire Place, AC,
 Multi Sale, etc. The categorical are either Yes or No. We would predict
 the sale price ranging from 0-3 million.
 
-\#Step 2 The variable of interest is “Sale Price”
+# Step 2 The variable of interest is “Sale Price”
 
-\#Step 3
+# Step 3
 
 ``` r
 library(ggplot2)
@@ -93,24 +93,44 @@ salePriceGraph <- ggplot(ames, aes(x=`Sale Price`)) +
 print(salePriceGraph)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- --> As a team
-when exploring the Sale Price variable through the histogram. Most homes
-look to be between 75k to 150k. There are some outliers where some homes
-are in the millions but not many at all.
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
-\#Step 4
+As a team when exploring the Sale Price variable through the histogram.
+Most homes look to be between 75k to 150k. There are some outliers where
+some homes are in the millions but not many at all.
+
+# Step 4
 
 Selena Cooper:
 
 ``` r
-sqftPlot <- ggplot(ames |> dplyr::filter(`Sale Price` != 0), aes(x=AC, y = `Sale Price`, fill = AC))+
+sqftPlot <- ggplot(ames |> dplyr::filter(`Sale Price` != 0) |> na.omit(), aes(x=AC, y = `Sale Price`, fill = AC))+
                      geom_boxplot() + coord_flip()
 print(sqftPlot)
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> I removed the
-zeros because there were a lot in the dataset so I could look at the AC
-variable affecting Sale Price. It is hard to see if Sale Price is
-affected by the AC. There are many outliers as well. The range of the AC
-variable is either the house has it or it doesn’t becuase it is
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+I removed the zeros because there were a lot in the dataset so I could
+look at the AC variable affecting Sale Price. IF the house has AC then
+it is more expensive. There are many outliers as well. The range of the
+AC variable is either the house has it or it doesn’t becuase it is
 categorical.
+
+Jyotika Sharma:
+
+``` r
+yearBuilt <- ggplot(ames |> dplyr::filter(`Sale Price` >  0) |> na.omit(), aes(x = `Sale Price`, y = `TotalLivingArea (sf)`)) +
+  geom_point()
+
+print(yearBuilt)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+I removed the zeros because most of the house in Ames in 2017 where
+causing the dataset to look skewed when exploring the scatter plot
+between Sale Price and the Total Living Area (sf). I also got rid of
+missing values. From the following points left, we can see that as the
+Sale price goes up, the total living area is higher. However, there are
+still points on that don’t follow that correlation.
