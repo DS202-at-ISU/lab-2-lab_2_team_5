@@ -7,13 +7,29 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(classdata)
 ```
+# Step 1
+```{r}
+colnames(ames)
+str(ames)
+head(ames)
+max(ames$`Sale Price`)
+```
+As a team we saw that there are numeric and categorical variables. Some of the numeric variables are TotalLivingArea (sf), Sale Price, Year Built, Acres, etc. Some of the categorical variables are Fire Place, AC, Multi Sale, etc. The categorical are either Yes or No. We would predict the sale price ranging from 0-3 million. 
 
-# Lab report #1
+#Step 2 
+The variable of interest is "Sale Price"
 
-Follow the instructions posted at https://ds202-at-isu.github.io/labs.html for the lab assignment. The work is meant to be finished during the lab time, but you have time until Monday evening to polish things.
+#Step 3
+```{r}
+library(ggplot2)
+salePriceGraph <- ggplot(ames, aes(x=`Sale Price`)) + 
+  geom_histogram(binwidth = 500000)
 
-Include your answers in this document (Rmd file). Make sure that it knits properly (into the md file). Upload both the Rmd and the md file to your repository.  
+print(salePriceGraph)
+```
+As a team when exploring the Sale Price variable through the histogram. Most homes look to be between 75k to 150k. There are some outliers where some homes are in the millions but not many at all. 
 
-All submissions to the github repo will be automatically uploaded for grading once the due date is passed.
-Submit a link to your repository on Canvas (only one submission per team) to signal to the instructors that you are done with your submission.
+#Step 4 
+
