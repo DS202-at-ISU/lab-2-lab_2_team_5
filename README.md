@@ -134,3 +134,20 @@ between Sale Price and the Total Living Area (sf). I also got rid of
 missing values. From the following points left, we can see that as the
 Sale price goes up, the total living area is higher. However, there are
 still points on that don’t follow that correlation.
+
+Grace Kolker
+
+``` r
+Bedrooms <- ggplot(ames |> dplyr::filter(`Sale Price` != 0) |> na.omit(), aes(x=`Sale Price`)) + 
+                     geom_bar() + facet_wrap ( ~ Bedrooms) 
+print(Bedrooms)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+This faceted bar chart shows the relationship between sales price and
+number of bedrooms. The chart shows that the more bedrooms a house has,
+the higher the sale price. I removed all the zeros and missing values
+which helped clean the data. The outliars skewing the data were coming
+from the missing values as well, that is why their are fewer points on
+the chart.
