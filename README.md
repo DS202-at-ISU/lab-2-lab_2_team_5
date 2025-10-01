@@ -99,3 +99,18 @@ look to be between 75k to 150k. There are some outliers where some homes
 are in the millions but not many at all.
 
 \#Step 4
+
+Selena Cooper:
+
+``` r
+sqftPlot <- ggplot(ames |> dplyr::filter(`Sale Price` != 0), aes(x=AC, y = `Sale Price`, fill = AC))+
+                     geom_boxplot() + coord_flip()
+print(sqftPlot)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> I removed the
+zeros because there were a lot in the dataset so I could look at the AC
+variable affecting Sale Price. It is hard to see if Sale Price is
+affected by the AC. There are many outliers as well. The range of the AC
+variable is either the house has it or it doesn’t becuase it is
+categorical.
